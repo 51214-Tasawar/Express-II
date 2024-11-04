@@ -1,28 +1,66 @@
-const { hash } = require("bcryptjs")
-const alluser =(req,res)=>{
-    res.send("Show me the All Users  ------ >")
-}
-const activeuser=(req ,res)=>{
-    res.send("Show the Active Uset    ------>")
-}
+const {hash}   = require("bcryptjs")  
 
-const Newuser= async(req ,res)=>{
+
+module.exports = {
+   create :async(req ,res)=>{
+       try{
+req.body.Password = await hash(req.body.Password , 10)
+   return  res.send({
+        status : "Ok",
+        message : "User Created Sucsessfully" ,
+        response : req.body
+    })
+       }catch(error){
+         return res.send({
+            status  : "Something  goes Wrong" ,
+            message : error ,
+            response: {}
+         })
+       }
+   } ,
+   get :(req ,res)=>{
    try{
-   req.body.Password = await hash(req.body.Password , 10)
+  return res.send({
+    status : "Ok",
+    message :"Get User Successfully" ,
+    response : req.query
+  })
+   } catch(error){
    return res.send({
-    status : " Ok ",
-    code : 200 ,
-    response : req.body 
-   })
-
-   }catch(error){
-   return res.send({
-    status : "Not Ok" ,
-    code : 400 ,
-    error : error.message 
+    status  : "Not Found",
+    message : error ,
+    response : {}
    })
    }
+   } ,
+   update :(req ,res)=>{
+     try{
+        return res.send({
+            status : "Ok" ,
+            message : "User Update Successfully",
+            response : req.body 
+            })
+     }catch(error){
+      return res.send({
+        status : "Not Found" ,
+      message : error ,
+      response : {}
+      })
+     }
+   } ,
+   Deleteuser :(req,res)=>{
+      try{
+     return res.send({
+        status : "Ok",
+        message : "User Deleted Successfully",
+        response : req.query
+     })
+      }catch(error){
+      return res.send({
+        status : "Not Found",
+        message : error ,
+        response : {}
+      })
+      }
+   }
 }
-
-
-module.exports = {alluser , activeuser , Newuser} ;
