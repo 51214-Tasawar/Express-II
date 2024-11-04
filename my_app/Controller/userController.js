@@ -7,9 +7,21 @@ const activeuser=(req ,res)=>{
 }
 
 const Newuser= async(req ,res)=>{
-    req.body.Password = await hash(req.body.Password , 10)
-    console.log(req.body)
-   res.send("Create the New User ------>")
+   try{
+   req.body.Password = await hash(req.body.Password , 10)
+   return res.send({
+    status : " Ok ",
+    code : 200 ,
+    response : req.body 
+   })
+
+   }catch(error){
+   return res.send({
+    status : "Not Ok" ,
+    code : 400 ,
+    error : error.message 
+   })
+   }
 }
 
 
