@@ -1,10 +1,10 @@
 const rout = require("express").Router();
 
 const User = require("../Controller/userController");
-const newUserInfo = require("../Validator/uservalidator")
+const  as = require("../Validator/uservalidator")
 
 rout.get("/alluser" , User.alluser) ;
 rout.get("/activeuse" , User.activeuser);
-rout.post("/Newuser" , newUserInfo ,User.Newuser);
+rout.post("/Newuser" , as,User.Newuser);
 
 module.exports = rout ;

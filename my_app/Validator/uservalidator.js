@@ -1,20 +1,20 @@
-const User = require("joi") ;
+const New= require("joi");
 
-const UserInfo = User.object ({
-    name :User.string().min(10).max(100).required(),
-    username:User.string().min(10).max(45).required(),
-    Password :User.string().min(6).max(60).required()
+const Newuser = New.object({
+    name : New.string().min(10).max(20).required(),
+    username : New.string().min(8).max(20).required(),
+    Password : New.string().min(9).max(1000).required()
 })
 
-const newUserInfo = async(req , res , next )=>{
-    try{
-      await  UserInfo.validateAsync(req.body);
-        next();
-    }catch(error){
-        return res.send({
-            error : error.message
-        })
-    }
+const Newuseradd = async(req , res , next)=>{
+   try{
+      await Newuser.validateAsync(req.body);
+     next();
+   }catch(error){
+   return res.send({
+    error : error.message 
+   })
+   }
 }
 
-module.exports = newUserInfo ;
+module.exports = Newuseradd ;
