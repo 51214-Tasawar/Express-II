@@ -1,16 +1,15 @@
+module.exports={
+  Error:(res , error)=>{
+  try{
+ return res.send({
+      code : 400 ,
+      error : error,
+  })
+  }catch(error){
+  return res.send({
+      code : 400 ,
+      error: error 
+  })
+  }
+}}
 
-module.exports ={
-    error : (res , eror)=>{
-     try{
-   return res.send({
-    code : 400 ,
-    error : eror 
-   })
-     }catch(error){
-     res.send({
-        code : 400 ,
-    error : eror
-     })
-     }
-    }
-}
