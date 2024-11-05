@@ -1,5 +1,5 @@
 const Joi = require("joi")
-
+const Error = require("../errorHandler")
 
 const create = Joi.object({
  name    : Joi.string().min(5).max(60).required(),
@@ -20,11 +20,7 @@ module.exports ={
   await create.validateAsync(req.body) ;
   next();
     }catch(error){
-      return res.send({
-        status :"Not Ok",
-        code : 400 ,
-        error : error.message  
-      })
+      return  Error(res, error);
     }
     } ,
     Get:async(req, res , next)=>{
@@ -32,11 +28,7 @@ module.exports ={
   await getdelete.validateAsync(req.queru)
   next();
    }catch(error){
-  return res.send({
-    status:"Not Ok" ,
-    code :  400 ,
-    error : error.message 
-  })
+    return  Error(res, error);
    }
     } ,
     Update:async(req, res , next)=>{
@@ -44,11 +36,7 @@ module.exports ={
   await update.validateAsync(req.body);
    next();
     }catch(error){
-   res.send({
-    status : " Not Ok",
-    code : 400 ,
-    error : error.message
-   })
+      return  Error(res, error);
     }
     } ,
     Delete:async(req, res , next)=>{
@@ -56,11 +44,7 @@ module.exports ={
     await  getdelete.validateAsync(req.query) ;
      next();
    }catch(error){
-  res.send({
-    status:"Not ok ",
-    code : 400 ,
-    error : error.message
-  })
+    return  Error(res, error);
    }
     }
 }

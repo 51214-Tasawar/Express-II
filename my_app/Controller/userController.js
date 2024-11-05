@@ -1,62 +1,35 @@
 const {hash}   = require("bcryptjs") ;
 const responseHandler = require("../responseHandlr")
+const Error  = require("../errorHandler")
 
 module.exports = {
    create :async(req ,res)=>{
        try{
 req.body.Password = await hash(req.body.Password , 10)
-   return responseHandler(res , req.body)
+   return responseHandler(res , req.body);
        }catch(error){
-         return res.send({
-            status  : "Something  goes Wrong" ,
-            message : error ,
-            response: {}
-         })
+  return  Error(res, error);
        }
    } ,
    get :(req ,res)=>{
    try{
-  return res.send({
-    status : "Ok",
-    message :"Get User Successfully" ,
-    response : req.query
-  })
+      return responseHandler(res , req.query);
    } catch(error){
-   return res.send({
-    status  : "Not Found",
-    message : error ,
-    response : {}
-   })
+      return  Error(res, error);
    }
    } ,
    update :(req ,res)=>{
      try{
-        return res.send({
-            status : "Ok" ,
-            message : "User Update Successfully",
-            response : req.body 
-            })
+      return responseHandler(res , req.body);
      }catch(error){
-      return res.send({
-        status : "Not Found" ,
-      message : error ,
-      response : {}
-      })
+      return  Error(res, error);
      }
    } ,
    Deleteuser :(req,res)=>{
       try{
-     return res.send({
-        status : "Ok",
-        message : "User Deleted Successfully",
-        response : req.query
-     })
+         return responseHandler(res , req.query);
       }catch(error){
-      return res.send({
-        status : "Not Found",
-        message : error ,
-        response : {}
-      })
+         return  Error(res, error);
       }
    }
 }
