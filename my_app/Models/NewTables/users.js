@@ -1,32 +1,33 @@
-const {DataTypes , Model} = require("sequelize") ;
-const sequelize = require("../../dbconnection")
-class Users extends Model {} ;
+const {DataTypes , Model } = require("sequelize") ;
+const connection = require("../../dbconnection");
 
-Users.init( {
-    userId :{
+class Customers extends Model { } 
+
+Customers.init( {
+    userId : {
         primaryKey : true ,
         type : DataTypes.STRING
-    } , 
-    username : {
-        allowNull : false ,
-        unique : true ,
-        type : DataTypes.STRING ,    
-    } ,
+    },
     name : {
         allowNull : false ,
-        type  : DataTypes.STRING
+        type : DataTypes.STRING
+    },
+    useranem : {
+        allowNull : false ,
+        unique : true ,
+        type : DataTypes.STRING
     } ,
-    password :{
+    password : {
         allowNull : false ,
         type : DataTypes.STRING
     }
-
-},
+} , 
 {
-    name : "Users" ,
+    name : "Customers Table" ,
     timestamps : true ,
-    paranoid : true ,
-    sequelize :sequelize 
+    paranoid  : true ,
+    sequelize : connection
+
 })
 
-module.exports = Users ;
+module.exports = Customers

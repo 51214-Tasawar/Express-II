@@ -3,7 +3,8 @@ const bodyParser = require("body-parser")
 
 const rout = require("./Router/userRouter") 
 const routes = require("./Router/authRouter")
-const {db , model} = require("./Models/index")
+const  {obj,model}  = require("./Models/index")
+// const {db , model} = require("./Models/index")
 
 const port = 3001 ;
 
@@ -20,8 +21,14 @@ app.get("/all",(req ,res)=>{
   return res.send("This Is Request for User Info ---> ")
 })
 
-db.sequelize.sync().then(()=>{
-  console.log("Contected To the Data Base")
+obj.connection.sync({}).then(()=>{
+  console.log("Conected To the Customers Table ")
 }).catch(()=>{
-  console.log("Error While Connection")
+  console.log("Not Conected To the Data Base ")
 })
+
+// db.sequelize.sync().then(()=>{
+//   console.log("Contected To the Data Base")
+// }).catch(()=>{
+//   console.log("Error While Connection")
+// })

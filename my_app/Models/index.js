@@ -1,10 +1,23 @@
-const sequelize = require("../dbconnection") ;
-const Users =require("./NewTables/users") ;
 
-const model = {Users} ;
+const Customers = require("./NewTables/users");
+const connection = require("../dbconnection");
 
-const db = {} ;
-db.sequelize = sequelize ;
-sequelize.model = model ;
+const model = {Customers};
 
-module.exports = {db , model}
+const obj = {} ;
+obj.connection = connection ;
+connection.customers = model ;
+
+module.exports = {obj , model}
+
+
+// const sequelize = require("../dbconnection") ;
+// const Users =require("./NewTables/users") ;
+
+// const model = {Users} ;
+
+// const db = {} ;
+// db.sequelize = sequelize ;
+// sequelize.model = model ;
+
+// module.exports = {db , model}
