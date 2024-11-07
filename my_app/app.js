@@ -20,5 +20,8 @@ app.get("/all",(req ,res)=>{
   return res.send("This Is Request for User Info ---> ")
 })
 
-
-
+db.sequelize.sync().then(()=>{
+  console.log("Contected To the Data Base")
+}).catch(()=>{
+  console.log("Error While Connection")
+})
