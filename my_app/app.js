@@ -3,6 +3,7 @@ const bodyParser = require("body-parser")
 
 const rout = require("./Router/userRouter") 
 const routes = require("./Router/authRouter")
+const {db , model} = require("./Models/index")
 
 const port = 3001 ;
 
@@ -19,7 +20,5 @@ app.get("/all",(req ,res)=>{
   return res.send("This Is Request for User Info ---> ")
 })
 
-app.listen(port,()=>{
-    console.log(`Express Testing for the port --> ${port}`)
-})
+
 
