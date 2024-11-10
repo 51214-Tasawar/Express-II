@@ -1,5 +1,5 @@
 const express = require("express");
-const bodyParser = require("body-parser")
+// const bodyParser = require("body-parser")
 
 const rout = require("./Router/userRouter") 
 const routes = require("./Router/authRouter")
@@ -10,8 +10,8 @@ const port = 3001 ;
 
 const app = express();
 
-app.use(bodyParser.urlencoded());
-app.use(bodyParser.json())
+// app.use(bodyParser.urlencoded());
+// app.use(bodyParser.json())
 
 
 app.use("/users" , rout) ;
