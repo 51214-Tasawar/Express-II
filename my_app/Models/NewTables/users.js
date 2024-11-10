@@ -1,23 +1,23 @@
-const { DataTypes , Model } = require("sequelize") ;
+const { DataTypes , Model, Sequelize } = require("sequelize") ;
 const connection = require("../../dbconnection");
 
 class customers extends Model { } 
 
 customers.init( {
-    userId : {
+    custId : {
         primaryKey : true ,
         type : DataTypes.STRING
     },
-    name : {
+    custname : {
         allowNull : false ,
         type : DataTypes.STRING
     },
-    useranem : {
+    custuseranem : {
         allowNull : false ,
         unique : true ,
         type : DataTypes.STRING
     } ,
-    password : {
+    newpassword : {
         allowNull : false ,
         type : DataTypes.STRING
     }
@@ -26,7 +26,7 @@ customers.init( {
     name : "Customers Table" ,
     timestamps : true ,
     paranoid  : true ,
-    sequelize : connection
+    sequelize :connection
 
 })
 
