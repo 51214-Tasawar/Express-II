@@ -1,9 +1,9 @@
-const {DataTypes , Model } = require("sequelize") ;
+const { DataTypes , Model } = require("sequelize") ;
 const connection = require("../../dbconnection");
 
-class Customers extends Model { } 
+class customers extends Model { } 
 
-Customers.init( {
+customers.init( {
     userId : {
         primaryKey : true ,
         type : DataTypes.STRING
@@ -30,4 +30,4 @@ Customers.init( {
 
 })
 
-module.exports = Customers
+module.exports = customers
