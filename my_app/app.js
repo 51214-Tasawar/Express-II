@@ -3,7 +3,7 @@ const bodyParser = require("body-parser")
 
 const rout = require("./Router/userRouter") 
 const routes = require("./Router/authRouter")
-
+const {db} = require("./Models/index")
 
 
 const port = 3001 ;
@@ -25,4 +25,4 @@ app.listen(port , ()=>{
   console.log(`Testing at Port ${port}`)
 })
 
-
+db.sequelize.sync()

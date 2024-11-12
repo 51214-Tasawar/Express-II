@@ -1,5 +1,5 @@
 const { DataTypes , Model } = require("sequelize") ;
-
+const sequelize = require("../../dbconnection")
 class users extends Model { } ;
 
 users.init(
@@ -26,7 +26,7 @@ users.init(
         name : "my_Table" ,
         timestamps : true ,
         paranoid :true ,
-    
+        sequelize : sequelize
     }
 )
 
