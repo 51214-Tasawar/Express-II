@@ -21,8 +21,8 @@ app.get("/all",(req ,res)=>{
   return res.send("This Is Request for User Info ---> ")
 })
 
-app.listen(port , ()=>{
+db.sequelize.sync({alert : true}).then(port , ()=>{
   console.log(`Testing at Port ${port}`)
+}).catch(()=>{
+  console.log("Something Wants Wrong")
 })
-
-db.sequelize.sync({alert : true}).then()
