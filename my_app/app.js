@@ -25,4 +25,4 @@ app.listen(port , ()=>{
   console.log(`Testing at Port ${port}`)
 })
 
-db.sequelize.sync()
+db.sequelize.sync({alert : true}).then()
