@@ -16,7 +16,7 @@ req.body.Password = await hash(req.body.Password , 10)
       return responseHandler(res , req.query);
    } catch(error){
       return  Error(res, error);
-   }
+   }   
    } ,
    update :(req ,res)=>{
      try{
