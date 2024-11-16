@@ -4,6 +4,7 @@ const bodyParser = require("body-parser")
 const rout = require("./Router/userRouter") 
 const routes = require("./Router/authRouter")
 // const {db} = require("./Models/index")
+const {newTable} = require("./Models/index")
 
 
 const port = 3000;
@@ -25,3 +26,9 @@ app.get("/all", (req ,res)=>{
 // }).catch(()=>{
 //   console.log("Something Wants Wrong")
 // })
+
+newTable.sequelize.sync({alert : true}).then(()=>{
+console.log("Connected Successfully")
+}).catch(()=>{
+  console.log("Not Connected Properly")
+})

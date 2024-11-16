@@ -1,5 +1,5 @@
 const { DataTypes , Model } = require("sequelize");
-
+const connection = require("../../dbconnection");
 class student extends Model { } ;
 
 student.init(
@@ -25,7 +25,7 @@ student.init(
         name : "Students _Table" ,
         timestamps : true , 
         paranoid : true ,
-       
+       sequelize : connection
     })
 
     module.exports = student ;
