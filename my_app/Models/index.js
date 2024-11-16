@@ -1,11 +1,7 @@
-const {Student} = require("./NewTables/Student") ;
+const sequelize = require("../dbconnection");
+const Student = require("./NewTables/Student");
 
-const {newcon} = require("../dbconnection")
+// Register the model
+sequelize.models.Student = Student;
 
-const models = {Student} ;
-const conn = { } ;
-
-conn.connection = newcon ;
-newcon.models = models ;
-
-module.exports = {conn} ;
+module.exports = { sequelize, Student };

@@ -1,30 +1,31 @@
 const express = require("express");
-const bodyParser = require("body-parser")
+const bodyParser = require("body-parser");
+const { sequelize } = require("./Models/index");
 
-const rout = require("./Router/userRouter") 
-const routes = require("./Router/authRouter")
-// const {db} = require("./Models/index")
-const {conn} = require("./Models/index")
-
-
-const port = 3000;
+const userRouter = require("./Router/userRouter");
+const authRouter = require("./Router/authRouter");
 
 const app = express();
+const port = 3000;
 
-app.use(bodyParser.urlencoded({extended : true}));
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
+app.use("/users", userRouter);
+app.use("/auth", authRouter);
 
-app.use("/users" , rout) ;
-app.use("/auth" , routes) ;
+app.get("/all", (req, res) => {
+    return res.send("This Is Request for User Info ---> ");
+});
 
-app.get("/all", (req ,res)=>{
-  return res.send("This Is Request for User Info ---> ")
-})
-
-
-conn.connection.sync({alter : true}).then(()=>{
-  console.log("New Data Base Created Successfully");
-}).catch(()=>{
-  console.log("My New Connection gets Error")
-})
+sequelize
+    .sync({ alter: true })
+    .then(() => {
+        console.log("Database synced successfully.");
+        app.listen(port, () => {
+            console.log(`Server is running on port ${port}`);
+        });
+    })
+    .catch((error) => {
+        console.error("Error syncing the database:", error.message);
+    });
