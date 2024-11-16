@@ -1,18 +1,11 @@
-const student = require("./NewTables/Student") ;
-const connection = require("../dbconnection");
+const {Student} = require("./NewTables/Student") ;
 
-const Tables = {student} ;
+const {newcon} = require("../dbconnection")
 
-const newTable = {} ;
+const models = {Student} ;
+const conn = { } ;
 
-newTable.myconn = connection ;
-connection.newSQL = Tables ;
+conn.connection = newcon ;
+newcon.models = models ;
 
-module.exports ={newTable , Tables} ;
-
-
-
-
-
-
-
+module.exports = {conn} ;

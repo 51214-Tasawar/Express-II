@@ -4,7 +4,7 @@ const bodyParser = require("body-parser")
 const rout = require("./Router/userRouter") 
 const routes = require("./Router/authRouter")
 // const {db} = require("./Models/index")
-const {newTable} = require("./Models/index")
+const {conn} = require("./Models/index")
 
 
 const port = 3000;
@@ -21,14 +21,10 @@ app.use("/auth" , routes) ;
 app.get("/all", (req ,res)=>{
   return res.send("This Is Request for User Info ---> ")
 })
-// db.sequelize.sync({alert : true}).then(port , ()=>{
-//   console.log(`Testing at Port ${port}`)
-// }).catch(()=>{
-//   console.log("Something Wants Wrong")
-// })
 
-newTable.sequelize.sync({alert : true}).then(()=>{
-console.log("Connected Successfully")
+
+conn.connection.sync({alter : true}).then(()=>{
+  console.log("New Data Base Created Successfully");
 }).catch(()=>{
-  console.log("Not Connected Properly")
+  console.log("My New Connection gets Error")
 })
